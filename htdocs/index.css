@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Admiral Derp Brand Colors */
+    --background: 42 53% 94%;        /* #F8F4E8 off-white */
+    --foreground: 0 0% 10%;          /* #1A1A1A dark text */
+
+    --card: 42 53% 96%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 42 53% 94%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 45 98% 61%;           /* #FDCF39 yellow */
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 23 100% 47%;        /* #F05C00 orange */
+    --secondary-foreground: 42 53% 94%;
+
+    --accent: 75 68% 37%;            /* #67A01D green */
+    --accent-foreground: 42 53% 94%;
+
+    --muted: 42 30% 85%;
+    --muted-foreground: 0 0% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 42 53% 94%;
+
+    --border: 42 30% 80%;
+    --input: 42 30% 88%;
+    --ring: 45 98% 61%;
+
+    --radius: 0.5rem;
+
+    /* Custom brand tokens */
+    --derp-yellow: 45 98% 61%;
+    --derp-orange: 23 100% 47%;
+    --derp-green: 75 68% 37%;
+    --derp-dark: 0 0% 10%;
+    --derp-light: 42 53% 94%;
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 0 0% 12%;
+    --foreground: 42 53% 94%;
+
+    --card: 0 0% 15%;
+    --card-foreground: 42 53% 94%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 42 53% 94%;
+
+    --primary: 45 98% 61%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 23 100% 47%;
+    --secondary-foreground: 42 53% 94%;
+
+    --accent: 75 68% 37%;
+    --accent-foreground: 42 53% 94%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 42 30% 70%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 42 53% 94%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 45 98% 61%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-black tracking-tight;
+  }
+}
+
+/* Admiral Derp Custom Animations */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px hsl(var(--primary)); }
+  50% { box-shadow: 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary)); }
+}
+
+@layer utilities {
+  .animate-glitch {
+    animation: glitch 0.3s infinite;
+  }
+  
+  .animate-wiggle {
+    animation: wiggle 0.5s ease-in-out;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .hover-wiggle {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-derp {
+    @apply bg-gradient-to-br from-primary via-secondary to-accent;
+  }
+
+  .font-display {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 0.02em;
+  }
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /imranlaoui
+Disallow: /auth
+
+Sitemap: https://yourdomain.com/sitemap.xml
